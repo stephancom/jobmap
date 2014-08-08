@@ -2,3 +2,9 @@
   h1 Jobmap
 
 #mapholder style='height: 40em'
+
+- if Job.any?
+  h4 Jobs listing (TODO map markers)
+  ul
+    - Job.all.each do |job|
+      li= job.full_street_address
