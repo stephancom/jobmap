@@ -25,6 +25,11 @@ gem 'jquery-ui-rails'
 gem 'active_skin'
 gem 'lorem_ipsum'
 gem 'airbrake'
+
+# app specific
+gem 'redis'
+gem 'geocoder'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_20]
