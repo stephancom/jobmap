@@ -1,30 +1,37 @@
 Jobmap
 ================
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+spec
+----
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
+Show a map with jobs posted on it.  Touching a job brings you to a view page for that job, with checkin, a paragraph notes fields (perhaps not editable) and an image upload.  An import task for csv may be required - though I propose either yaml, or just skipping past that straight to the admin UI, it's easier.
 
-Problems? Issues?
------------
+models:
+* job (lat/lon, notes), has_many :checkins (has_one?), has_many :pictures
+* checkin (user_id, job_id) unique for user/job? or multiple checkins on same job.  Multiple users checking in for same job? checkout?
+* pictures 
 
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
+local deploy
+------------
 
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
+rake db:setup
+rails server
 
-If the application doesn’t work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
+heroku deploy
+-------------
 
-Ruby on Rails
+heroku apps:create jobmap
+heroku addons:add pgbackups
+bundle exec figaro heroku:set -e production
+heroku run rake db:setup
+
+Requirements
 -------------
 
 This application requires:
 
 - Ruby 2.0.0
 - Rails 4.1.0
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
 
 Getting Started
 ---------------
@@ -41,8 +48,14 @@ Similar Projects
 Contributing
 ------------
 
+stephan.com
+
 Credits
 -------
 
+(c) stephan.com 2014
+
 License
 -------
+
+all rights reserved

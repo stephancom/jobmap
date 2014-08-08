@@ -10,13 +10,21 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bootstrap-sass'
+gem 'bootstrap-sass-extras'
+gem 'bootstrap_form'
 gem 'devise'
 gem 'figaro', '>= 1.0.0.rc1'
+gem 'high_voltage'
 gem 'pg'
 gem 'pundit'
 gem 'slim-rails'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'jquery-ui-rails'
+gem 'active_skin'
+gem 'lorem_ipsum'
+gem 'airbrake'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_20]
@@ -42,3 +50,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+gem 'rails_12factor', group: :production
