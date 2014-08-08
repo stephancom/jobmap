@@ -23,6 +23,7 @@ heroku deploy
 heroku apps:create jobmap
 bundle exec figaro heroku:set -e production
 git push heroku master
+heroku addons:add redistogo
 heroku run rake db:setup
 
 Requirements
