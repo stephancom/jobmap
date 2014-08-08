@@ -8,12 +8,12 @@ html
     meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Jobmap'}"
     == stylesheet_link_tag "application", :media => 'all', 'data-turbolinks-track' => true
     == javascript_include_tag 'application', 'data-turbolinks-track' => true
+    == javascript_include_tag "http://maps.google.com/maps/api/js?key=#{Rails.application.secrets.google_maps_key}&sensor=true"
     == csrf_meta_tags
   body
-    header
-      == render 'layouts/navigation'
+    header= render 'layouts/navigation'
     .container
       .row
-        main.col-md-12[role="main"]
+        .col-md-12
           = bootstrap_flash
           = yield

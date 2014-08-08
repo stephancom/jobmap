@@ -21,8 +21,8 @@ heroku deploy
 -------------
 
 heroku apps:create jobmap
-heroku addons:add pgbackups
 bundle exec figaro heroku:set -e production
+git push heroku master
 heroku run rake db:setup
 
 Requirements
