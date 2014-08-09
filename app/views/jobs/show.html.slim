@@ -1,0 +1,7 @@
+.panel.panel-primary
+  .panel-heading= @job.full_street_address
+  .panel-body= simple_format @job.notes
+  .panel-footer
+    .btn.btn-primary Check In
+    = link_to 'Back', jobs_path, class: 'btn btn-default'
+

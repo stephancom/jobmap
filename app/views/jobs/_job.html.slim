@@ -1,0 +1,5 @@
+= link_to job, data: {lat: job.latitude, lon: job.longitude, marker: job.notes }, class: 'list-group-item' do
+  h4.list-group-item-heading
+    = image_tag 'construction.png', class: 'pull-left'
+    = job.full_street_address
+  p.list-group-item-text= simple_format job.notes

@@ -23,6 +23,7 @@ errorPosition = (error) ->
       x.html "Location timed out."
     when error.UNKNOWN_ERROR
       x.html "unknown error." 
+
 showPosition = (position) ->
   $('#location-error').html ''
 
@@ -33,16 +34,46 @@ showPosition = (position) ->
   map.setCenter latlon
   myMarker.setPosition latlon
 
+window.addJob = (lat, lon, notes) ->
+  console.log lat, lon, notes
+  latlon = new google.maps.LatLng(lat, lon)
+  new google.maps.Marker
+    position: latlon
+    map: map
+    title: notes
+    # icon source http://mapicons.nicolasmollet.com/markers/industry/construction/
+    icon: 'assets/construction.png'
+
 window.showBox = (p1, p2) ->
   bnd = new google.maps.LatLngBounds p1, p2
   boundRect.setBounds bnd
 
-$(document).on 'ready page:load page:change', ->
+$(document).on 'page:change', ->
   map = new google.maps.Map $('#mapholder')[0], 
     zoom: 17,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   myMarker = new google.maps.Marker map: map
   boundRect = new google.maps.Rectangle map: map
+
+  $('#markers').find('[data-marker]').each ->
+    job = $(this)
+    latlon = new google.maps.LatLng(job.data('lat'), job.data('lon'))
+    jobMarker = new google.maps.Marker
+      position: latlon
+      map: map
+      title: job.data('marker')
+      # icon source http://mapicons.nicolasmollet.com/markers/industry/construction/
+      icon: 'assets/construction.png'
+    google.maps.event.addListener jobMarker, 'mouseover', ->
+      job.addClass 'active'
+    google.maps.event.addListener jobMarker, 'mouseout', ->
+      job.removeClass 'active'
+    google.maps.event.addListener jobMarker, 'click', ->
+      window.location = job.attr('href')
+    job.on 'mouseover', ->
+      jobMarker.setAnimation(google.maps.Animation.BOUNCE)
+    .on 'mouseout', ->
+      jobMarker.setAnimation(null)
 
   getLocation()
 
