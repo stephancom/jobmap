@@ -63,7 +63,7 @@ $(document).on 'page:change', ->
       map: map
       title: job.data('marker')
       # icon source http://mapicons.nicolasmollet.com/markers/industry/construction/
-      icon: 'assets/construction.png'
+      icon: window.image_path('construction.png')
     google.maps.event.addListener jobMarker, 'mouseover', ->
       job.addClass 'active'
     google.maps.event.addListener jobMarker, 'mouseout', ->
